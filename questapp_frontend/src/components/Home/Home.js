@@ -24,7 +24,7 @@ const Home = () => {
   };
   useEffect(() => {
     refreshPosts();
-  }, [postList]);
+  }, []);
 
   if (error) {
     return <div> Error !!!</div>;
@@ -34,7 +34,7 @@ const Home = () => {
     return (
       <div className="container">
         <div style={{ marginBottom: "0.5rem" }}>
-          <PostForm userId={1} userName={"ddd"} refreshPost={refreshPosts} />
+          <PostForm userId={1} userName={"ddd"} refreshPosts={refreshPosts} />
         </div>
         <div>
           {postList.map((post) => {

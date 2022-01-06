@@ -41,7 +41,7 @@ public class LikeService {
 	}
 
 	public Like getOneLikeById(Long likeId) {
-		return likeRepo.getById(likeId);
+		return likeRepo.findById(likeId).orElse(null);
 	}
 
 	public Like createOneLike(LikeCreateRequest request) {
@@ -54,7 +54,7 @@ public class LikeService {
 			likeToSave.setPost(post);
 			likeToSave.setUser(user);
 			return likeRepo.save(likeToSave);
-		}
+		} else
 		
 		return null;
 	}

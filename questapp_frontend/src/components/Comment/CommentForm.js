@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import "./Comment.scss";
 
 const CommentForm = (props) => {
-  const { userId, userName, postId } = props;
+  const { userId, userName, postId, refreshComments } = props;
   const [error, setError] = useState(null);
   const [text, setText] = useState("");
   const saveComment = () => {
@@ -31,6 +31,7 @@ const CommentForm = (props) => {
   const handleSubmit = () => {
     saveComment();
     setText("");
+    refreshComments();
   };
 
   const handleChange = (value) => {

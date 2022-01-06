@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -29,9 +30,10 @@ public class PostService {
 		this.userService = userService;
 	}
 	
-	public void setLikeService(LikeService likeService) {
-		this.likeService = likeService;
-	}
+	  @Autowired 
+	  public void setLikeService(LikeService likeService) {
+	  this.likeService = likeService; }
+	 
 
 	public List<PostResponse> getAllPosts(Optional<Long> userId) {
 		List<Post> list;
@@ -41,7 +43,7 @@ public class PostService {
 			list = postRepo.findAll();
 		}
 		return list.stream().map(post -> { 
-			List<LikeResponse> likes = likeService.getAllLikes(Optional.empty(),Optional.of(post.getId()));	
+			List<LikeResponse> likes = likeService.getAllLikes(Optional.ofNullable(null),Optional.of(post.getId()));	
 			return new PostResponse(post,likes);}).collect(Collectors.toList());
 	}
 

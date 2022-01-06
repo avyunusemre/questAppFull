@@ -21,9 +21,6 @@ public class UserService {
 		return userRepo.findAll();
 	}
 
-	public User createNewUser(User user) {
-		return userRepo.save(user);
-	}
 
 	public User getOneUserById(Long userId) {
 		return userRepo.findById(userId).orElse(null);
@@ -43,6 +40,14 @@ public class UserService {
 
 	public void deleteUser(Long userId) {
 		userRepo.deleteById(userId);
+	}
+
+	public User getOneUserByUserName(String userName) {
+		return userRepo.findByUserName(userName); 
+	}
+
+	public User saveOneUser(User newUser) {
+		return userRepo.save(newUser);
 	}
 	
 }
